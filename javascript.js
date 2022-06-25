@@ -29,7 +29,9 @@ function computerPlay(){
 
 /*Game Function */
 function play(playerSelection, opponentSelection){
-        console.log(playerSelection + " " + opponentSelection);
+        
+        
+        console.log("Player selected " +playerSelection + " Opponent has selected " + opponentSelection);
         /*Win Condition */
         if(playerSelection.toLowerCase() == "rock" && opponentSelection.toLowerCase()=="scissors" 
         || playerSelection.toLowerCase()==="scissors" && opponentSelection.toLowerCase()=="paper" || 
@@ -50,14 +52,25 @@ function play(playerSelection, opponentSelection){
         }
 }
 
-console.log(play("ROCK", computerPlay()));
+
 
 /*Game Function*/
 function game(){
     /*For loop for 5 games*/
-    for(x=0;x<=5;x++){
-        
+    for(x=0;x<5;x++){
+        /*Player prompt */
+        playerChoice = prompt('Please choose between Rock, Paper, or Scissors', "Rock");
+        /*Game*/
+        console.log(play(playerChoice, computerPlay()));
+    }
+    if(playerScore>opponentScore){
+        return "Congratulations, You've won!";
+    } else if(playerScore<opponentScore){
+        return "You've lost..."
+    } else{
+        return "Something went wrong";
     }
 }
+console.log(game());
 
 
