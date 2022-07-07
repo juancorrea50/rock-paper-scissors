@@ -9,5 +9,10 @@ TO-DO:
 -Ensure the game does end and succesfully close loop(v/)
 -Test functionality(v/)
 
+js TODO:
+Create buttons ()
+Add a div to display results()
+Display running score()
+
 
 

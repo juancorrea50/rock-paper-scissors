@@ -1,5 +1,20 @@
 /*Look at TODO list in README and TOP assignment for directions*/
 
+/*js querySelectors */
+const rockButton = document.querySelector(".rock");
+const paperButton = document.querySelector(".paper");
+const scissorsButton = document.querySelector(".scissors");
+const resultDiv = document.querySelector(".results")
+const opponentScoreElement = document.querySelector('.opponent-score');
+const playerScoreElement = document.querySelector('.player-score');
+
+
+
+
+
+
+
+
 /*Make variables for game*/
 let playerChoice;
 let playerScore=0;
@@ -27,7 +42,10 @@ function computerPlay(){
 }
 
 
-/*Game Function */
+
+
+
+/*Game Logic */
 function play(playerSelection, opponentSelection){
         
         
@@ -36,41 +54,109 @@ function play(playerSelection, opponentSelection){
         if(playerSelection.toLowerCase() == "rock" && opponentSelection.toLowerCase()=="scissors" 
         || playerSelection.toLowerCase()==="scissors" && opponentSelection.toLowerCase()=="paper" || 
         playerSelection.toLowerCase()=="paper" && opponentSelection.toLowerCase()=="rock"){
+            const p = document.createElement('p');
+            
+            p.innerText = "Player has won this round!!!";
+            resultDiv.appendChild(p);
             playerScore++;
-            return "Player has won this round!!!";
         }
         /*Lose Condition */
         else if(playerSelection.toLowerCase() == "scissors" && opponentSelection.toLowerCase() =="rock" 
         || playerSelection.toLowerCase()=="paper" && opponentSelection.toLowerCase()=="scissors" || 
         playerSelection.toLowerCase()=="rock" && opponentSelection.toLowerCase()=="paper"){
+            const p = document.createElement('p');
+
+            p.innerText = "Player has lost this round...";
+            resultDiv.appendChild(p);
+            
             opponentScore++;
-            return "Player has lost this round...";
         }
         /*Draw Condition */
         else if(playerSelection.toLowerCase() === opponentSelection.toLowerCase()){
-            return "Player and opponent have reached a draw no point is given"
+            const p = document.createElement('p');
+
+            p.innerText = "Player and opponent have reached a draw no point is given" 
+            resultDiv.appendChild(p);
         }
 }
 
+function checkForWinner(playerScore, opponentScore){
+    if(playerScore === 5) {
+        const h2 = document.createElement('h2');
+        h2.innerText = "You won!!!";
+        resultDiv.appendChild(h2);
+
+    } else if(opponentScore ===5){
+        const h2 = document.createElement('h2');
+        h2.innerText = "You've lost...";
+        resultDiv.appendChild(h2);
+    }
 
 
-/*Game Function*/
-function game(){
-    /*For loop for 5 games*/
-    for(x=0;x<5;x++){
-        /*Player prompt */
-        playerChoice = prompt('Please choose between Rock, Paper, or Scissors', "Rock");
-        /*Game*/
-        console.log(play(playerChoice, computerPlay()));
-    }
-    if(playerScore>opponentScore){
-        return "Congratulations, You've won!";
-    } else if(playerScore<opponentScore){
-        return "You've lost..."
-    } else{
-        return "Something went wrong";
-    }
 }
-console.log(game());
+
+rockButton.addEventListener('click', () => {
+    const computerSelection = computerPlay();
+    const playerSelection = 'rock';
+    play(playerSelection, computerSelection);
+    
+    playerScoreElement.innerText = playerScore;
+    opponentScoreElement.innerText = opponentScore;
+
+    checkForWinner(playerScore,opponentScore);
+});
+
+paperButton.addEventListener('click', () => {
+    const computerSelection = computerPlay();
+    const playerSelection = 'paper';
+    play(playerSelection, computerSelection);
+    playerScoreElement.innerText = playerScore;
+    opponentScoreElement.innerText = opponentScore;
+
+    checkForWinner(playerScore,opponentScore);
+});
+
+scissorsButton.addEventListener('click', () => {
+    const computerSelection = computerPlay();
+    const playerSelection = 'scissors';
+    play(playerSelection, computerSelection);
+    playerScoreElement.innerText = playerScore;
+    opponentScoreElement.innerText = opponentScore;
+
+    checkForWinner(playerScore,opponentScore);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//OLD CODE
+/*Game Function*/
+//function game(){
+    /*For loop for 5 games*/
+    /*for(x=0;x<5;x++){*/
+        /*Player prompt */
+//        playerChoice = prompt('Please choose between Rock, Paper, or Scissors', "Rock");
+        /*Game*/
+    //    console.log(play(playerChoice, computerPlay()));
+    //}
+ //   if(playerScore>opponentScore){
+      //  return "Congratulations, You've won!";
+ //   } else if(playerScore<opponentScore){
+  //      return "You've lost...";
+    //} else{
+    //    return "Something went wrong";
+  //  }
+//}*/
+//console.log(game());
 
 
